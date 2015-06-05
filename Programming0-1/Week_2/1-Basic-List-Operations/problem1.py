@@ -1,0 +1,8 @@
+a = [1]
+b = [1, 2, 3]
+c = []
+d = [True, not False, 1 > 0]
+e = ["Python", "Django"]
+f = ["Presian", "Nikolaev", "Danailov"]
+g = ["Pesho", "Gosho", "Tosho", "Stamat", "Haralapi"]
+h = ['Python', 'Ruby', 'Java', 'C', 'C+', 'C#', 'VB', 'JS', 'PHP', 'GO', 'Scala', 'Haskell']
