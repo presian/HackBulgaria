@@ -1,0 +1,2 @@
+class PandaAlreadyThere(Exception):
+    pass

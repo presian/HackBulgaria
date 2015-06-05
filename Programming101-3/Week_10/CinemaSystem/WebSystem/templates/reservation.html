@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block main %}
+	<div class="row">
+		<div class="col-md-6">
+			<table class="table">
+				<tr>
+					<td>
+						Name
+					</td>
+					<td>
+						{{projection.movie.name}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Date
+					</td>
+					<td>
+						{{ projection.date|date:"CUSTOM_DATE_FORMAT" }}
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+{% endblock main %}

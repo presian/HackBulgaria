@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block main %}
+	<h3>Movies list</h3>
+
+	{% for movie in movies %}
+	<div class="panel panel-primary">
+	  	<div class="panel-heading">
+	    		<h3 class="panel-title">{{ movie.name }} <span class="badge">
+	  				{{ movie.rating }}
+	  			</span></h3>	
+	  	</div>
+	  	<div class="panel-body">
+			<ul class="list-group">
+		    	{% for projection in projections %}
+					{% if projection.movie.id == movie.id %}
+				  	<li class="list-group-item">
+				    	<span class="badge">{{ projection.get_type_display }}</span>
+						<a href="{% url 'web:regForm' projection.id %}">
+							{{ projection.date|date:'CUSTOM_DATE_FORMAT' }}
+						</a>
+				  	</li>
+					{% endif %}
+		    	{% endfor%}
+			</ul>
+	  	</div>
+	</div>
+	{% endfor %}
+{% endblock main %}
+
+
+    	
