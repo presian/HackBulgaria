@@ -11,7 +11,7 @@ class Queue:
 
     def pop(self):
         if self.__queue.size() > 0:
-            first_elemet = self.__queue.get(1)
+            first_elemet = self.__queue.get(0)
             temp_vector = Vector()
             for i in range(0, self.__queue.size()):
                 if i > 0:
