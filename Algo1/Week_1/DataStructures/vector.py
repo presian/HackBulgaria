@@ -2,13 +2,13 @@ class Vector():
 
     def __init__(self):
         self.__size = 5
-        self.__list = [None]*self.__size
+        self.__list = [None] * self.__size
         self.__index = 0
 
     def check_vector_length(self):
         if self.__index == self.__size:
-                self.__list = self.__list + [None] * self.__size
-                self.__size = self.__size * 2
+            self.__list = self.__list + [None] * self.__size
+            self.__size = self.__size * 2
 
     def add(self, value):
         self.check_vector_length()
@@ -26,12 +26,12 @@ class Vector():
                 new_list[i + 1] = self.__list[i]
             elif i == index:
                 new_list[i] = value
-                new_list[i + 1] = self.__list[i] 
+                new_list[i + 1] = self.__list[i]
                 self.__index += 1
             elif i < index:
                 new_list[i] = self.__list[i]
             elif length == i + 1:
-                new_list[length-1] = new_list[i]
+                new_list[length - 1] = new_list[i]
         self.__list = new_list
 
     def get(self, index):
@@ -39,13 +39,13 @@ class Vector():
 
     def remove(self, index):
         length = self.__size
-        new_list = [None]*length
+        new_list = [None] * length
 
         for i in range(0, length):
             if i < index:
                 new_list[i] = self.__list[i]
             elif i > index:
-                new_list[i-1] = self.__list[i]
+                new_list[i - 1] = self.__list[i]
         self.__list = new_list
         self.__index -= 1
 
