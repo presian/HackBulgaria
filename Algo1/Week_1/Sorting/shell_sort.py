@@ -13,6 +13,10 @@ def shell_sort(arr):
         if first > second:
             arr[index] = second
             arr[index + gap] = first
+            while arr[index] > 0 and arr[index] < arr[index - 1]:
+                temp_var = arr[index]
+                arr[index] = arr[index - 1]
+                arr[index - 1] = temp_var
 
         if index + gap * 2 < arr_len:
             index = index + gap
