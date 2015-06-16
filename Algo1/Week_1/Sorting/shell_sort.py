@@ -1,4 +1,4 @@
-# from random import randint
+from random import randint
 
 
 def shell_sort(arr):
@@ -7,16 +7,18 @@ def shell_sort(arr):
     index = 0
     power = 1
     gap = make_gap(arr_len, power)
-    while not is_sorted:
+    while gap > 0:
         first = arr[index]
         second = arr[index + gap]
         if first > second:
             arr[index] = second
             arr[index + gap] = first
-            while arr[index] > 0 and arr[index] < arr[index - 1]:
-                temp_var = arr[index]
-                arr[index] = arr[index - 1]
-                arr[index - 1] = temp_var
+            pivot = index
+            while pivot > 1 and arr[pivot] < arr[pivot - 1]:
+                temp_var = arr[pivot]
+                arr[pivot] = arr[pivot - 1]
+                arr[pivot - 1] = temp_var
+                pivot -= 1
 
         if index + gap * 2 < arr_len:
             index = index + gap
@@ -26,6 +28,7 @@ def shell_sort(arr):
             index = 0
             power += 1
             gap = make_gap(arr_len, power)
+    return arr
 
 
 def make_gap(arr_len, power):
