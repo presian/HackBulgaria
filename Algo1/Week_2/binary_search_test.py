@@ -32,7 +32,6 @@ def make_mid_point(left, right):
 
 def main():
     g_list = sorted([randint(0, 5) for x in range(0, 10)])
-    # g_list = [0, 1, 1, 2, 2, 2, 2, 3, 3, 5]
     print(g_list)
 
     index = find_element(2, g_list)
