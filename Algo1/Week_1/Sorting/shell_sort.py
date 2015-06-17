@@ -3,7 +3,6 @@ from random import randint
 
 def shell_sort(arr):
     arr_len = len(arr)
-    is_sorted = False
     index = 0
     power = 1
     gap = make_gap(arr_len, power)

@@ -25,5 +25,6 @@ def main():
     test_arr = [randint(0,  100) for x in range(0, 21)]
     print(test_arr)
     print(bubble_sort(test_arr))
+
 if __name__ == '__main__':
     main()
