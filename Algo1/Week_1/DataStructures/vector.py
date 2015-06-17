@@ -49,7 +49,6 @@ class Vector():
         self.__list = new_list
         self.__index -= 1
 
-    def pop(self):
         if self.__index > 0:
             self.__index = self.__index - 1
             self.__list[self.__index] = None

@@ -31,6 +31,9 @@ class Queue:
             return self.__queue.get(index)
         return None
 
+    def remove(self, index):
+        self.__queue.remove(index)
+
     def size(self):
         return self.__queue.size()
 
