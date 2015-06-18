@@ -6,9 +6,13 @@ class Queue:
     def __init__(self):
         self.__queue = Vector()
 
+    # Adds value to the end of the Queue.
+    # Complexity: O(1)
     def push(self, value):
         self.__queue.add(value)
 
+    # Returns value from the front of the Queue and removes it.
+    # Complexity: O(1)
     def pop(self):
         if self.__queue.size() > 0:
             first_elemet = self.__queue.get(0)
@@ -21,10 +25,17 @@ class Queue:
         else:
             return None
 
+    # Returns value from the front of the Queue without removing it.
+    # Complexity: O(1)
     def peak(self):
         if self.__queue.size != 0:
             return self.__queue.get(0)
         return None
+
+    # Returns the number of elements in the Queue.
+    # Complexity: O(1)
+    def size(self):
+        return self.__queue.size()
 
     def get(self, index):
         if index < self.__queue.size():
@@ -33,9 +44,6 @@ class Queue:
 
     def remove(self, index):
         self.__queue.remove(index)
-
-    def size(self):
-        return self.__queue.size()
 
     def getQueue(self):
         return self.__queue.getVector()
@@ -47,15 +55,15 @@ def main():
     q.push(5)
     q.push(6)
     q.push(7)
-    q.push(5)
-    q.push(6)
-    q.push(7)
-    q.push(5)
-    q.push(6)
-    q.push(7)
-    q.push(5)
-    q.push(6)
-    q.push(7)
+    # q.push(5)
+    # q.push(6)
+    # q.push(7)
+    # q.push(5)
+    # q.push(6)
+    # q.push(7)
+    # q.push(5)
+    # q.push(6)
+    # q.push(7)
 
     print(q.getQueue())
     print(q.pop())
@@ -66,6 +74,7 @@ def main():
 
     print(q.get(1))
 
+    print(q.getQueue())
     print(q.size())
 
 

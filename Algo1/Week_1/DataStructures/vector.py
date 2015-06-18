@@ -10,11 +10,15 @@ class Vector():
             self.__list = self.__list + [None] * self.__size
             self.__size = self.__size * 2
 
+    # Adds value to the end of the Vector.
+    # Complexity: O(1)
     def add(self, value):
         self.check_vector_length()
         self.__list[self.__index] = value
         self.__index += 1
 
+    # Adds value at a specific index in the Vector.
+    # Complexity: O(n)
     def insert(self, index, value):
         self.check_vector_length()
 
@@ -34,9 +38,13 @@ class Vector():
                 new_list[length - 1] = new_list[i]
         self.__list = new_list
 
+    # Returns value at a specific index in the Vector
+    # Complexity: O(1)
     def get(self, index):
         return self.__list[index]
 
+    # Removes element at the specific index
+    # Complexity: O(n)
     def remove(self, index):
         length = self.__size
         new_list = [None] * length
@@ -47,15 +55,24 @@ class Vector():
             elif i > index:
                 new_list[i - 1] = self.__list[i]
         self.__list = new_list
-        self.__index -= 1
 
         if self.__index > 0:
             self.__index = self.__index - 1
             self.__list[self.__index] = None
 
+    # Removes element at the last index
+    # Complexity: O(1)
+    def pop(self):
+        last_ndex = self.size()
+        self.remove(last_ndex)
+
+    # Returns the number of elements in the Vector.
+    # Complexity: O(1)
     def size(self):
         return self.__index
 
+    # Returns the total capacity of the Vector.
+    # Complexity: O(1)
     def capacity(self):
         return self.__size
 
@@ -64,34 +81,35 @@ class Vector():
 
 
 def main():
-    vector = Vector()
+    pass
+    # vector = Vector()
 
-    vector.add('lala')
-    vector.add('asd')
-    vector.add('rtr')
-    vector.add('rtr')
-    vector.add('rtr')
+    # vector.add('lala')
+    # vector.add('asd')
+    # vector.add('rtr')
+    # vector.add('rtr')
+    # vector.add('rtr')
 
-    vector.insert(2, 'lalalalal')
-    vector.insert(2, 'lalalalal')
-    vector.insert(2, 'lalalalal')
-    vector.insert(2, 'lalalalal')
-    vector.insert(2, 'lalalalal')
-    vector.insert(2, 'lalalalal')
+    # vector.insert(2, 'lalalalal')
+    # vector.insert(2, 'lalalalal')
+    # vector.insert(2, 'lalalalal')
+    # vector.insert(2, 'lalalalal')
+    # vector.insert(2, 'lalalalal')
+    # vector.insert(2, 'lalalalal')
 
-    print(vector.getVector())
+    # print(vector.getVector())
 
-    print(vector.get(1))
+    # print(vector.get(1))
 
-    vector.remove(1)
-    print(vector.getVector())
+    # vector.remove(1)
+    # print(vector.getVector())
 
-    vector.pop()
-    print(vector.getVector())
+    # vector.pop()
+    # print(vector.getVector())
 
-    print(vector.size())
+    # print(vector.size())
 
-    print(vector.capacity())
+    # print(vector.capacity())
 
 
 if __name__ == '__main__':

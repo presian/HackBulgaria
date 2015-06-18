@@ -17,19 +17,22 @@ class Stack:
     # pop()
     def pop(self):
         last_index = self.__stack.size()
-        last_element = self.__stack.get(last_index)
+        last_element = self.__stack.get(last_index - 1)
         self.__stack.remove(last_index)
         return last_element
 
-    # Returns value from the front of the Queue without removing it.
+    # Returns value from the end of the Stack without removing it.
     # Complexity: O(1)
     def peek(self):
-        return
+        return self.__stack.get(self.__stack.size() - 1)
 
     # Returns the number of elements in the Queue.
     # Complexity: O(1)
-    def size():
-        pass
+    def size(self):
+        return self.__stack.size()
+
+    def getSize(self):
+        return self.__stack.size()
 
     def getStack(self):
         return self.__stack.getQueue()
@@ -43,10 +46,13 @@ def main():
     stack.push(9)
     stack.push(3)
     stack.push(7)
-    print(stack.getStack())
 
-    stack.pop()
     print(stack.getStack())
+    print(stack.pop())
+    print(stack.getStack())
+    print(stack.peek())
+    print(stack.getStack())
+    print(stack.size())
 
 if __name__ == '__main__':
     main()
