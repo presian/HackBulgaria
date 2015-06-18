@@ -8,6 +8,7 @@ def quadruplets(arr_one, arr_two, arr_three, arr_four):
                         counter += 1
     return counter
 
+# vsi4ki ot purvite dva, i wseki ot vtorite dva i tyrsim kombinaciqta pyrviq + obratniq mu
 
 def main():
     print(quadruplets([5, 3, 4], [-2, -1, 6], [-1, -2, 4], [-1, -2, 7]))
