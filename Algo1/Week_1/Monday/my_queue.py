@@ -28,6 +28,7 @@ class Queue:
     # Returns value from the front of the Queue without removing it.
     # Complexity: O(1)
     def peak(self):
+
         if self.__queue.size != 0:
             return self.__queue.get(0)
         return None
@@ -36,14 +37,6 @@ class Queue:
     # Complexity: O(1)
     def size(self):
         return self.__queue.size()
-
-    def get(self, index):
-        if index < self.__queue.size():
-            return self.__queue.get(index)
-        return None
-
-    def remove(self, index):
-        self.__queue.remove(index)
 
     def getQueue(self):
         return self.__queue.getVector()
@@ -71,8 +64,6 @@ def main():
 
     print(q.peak())
     print(q.getQueue())
-
-    print(q.get(1))
 
     print(q.getQueue())
     print(q.size())

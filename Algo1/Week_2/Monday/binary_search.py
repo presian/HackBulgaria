@@ -1,6 +1,7 @@
-def binary_search(element, g_list, left=None, right=None):
-    if left is None and right is None:
+def binary_search(element, g_list, left=None, right=None, most_left_in_left_bound=False):
+    if left is None:
         left = 0
+    if right is None:
         right = len(g_list) - 1
 
     arr_len = len(g_list)
@@ -15,12 +16,14 @@ def binary_search(element, g_list, left=None, right=None):
 
     if element == mid_point_value:
         while mid_point > 0 and g_list[mid_point - 1] == element:
+            if most_left_in_left_bound is True and mid_point == left:
+                return mid_point
             mid_point -= 1
         return mid_point
     elif element < mid_point_value:
-        return binary_search(element, g_list, left, mid_point - 1)
+        return binary_search(element, g_list, left, mid_point - 1, most_left_in_left_bound)
     else:
-        return binary_search(element, g_list, mid_point + 1, right)
+        return binary_search(element, g_list, mid_point + 1, right, most_left_in_left_bound)
 
 
 def make_mid_point(left, right):
