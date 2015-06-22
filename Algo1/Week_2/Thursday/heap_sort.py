@@ -17,7 +17,6 @@ class HeapSort:
         heap = Heap(order)
         for element in sequence:
             heap.insert(element)
-        print(heap.getHeap())
         return heap
 
 
