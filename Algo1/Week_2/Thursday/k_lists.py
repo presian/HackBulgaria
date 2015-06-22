@@ -14,14 +14,13 @@ class KLists:
         return sorted_arr
 
     def __get_current_min(self):
-        lists_len = len(self.__lists)
         first_members = []
 
         for l in self.__lists:
             first_members.append(l[0])
 
         min_index = first_members.index(min(first_members))
-        min_value=first_members[min_index]
+        min_value = first_members[min_index]
         self.__lists[min_index].pop(0)
 
         if len(self.__lists[min_index]) < 1:
