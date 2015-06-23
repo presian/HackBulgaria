@@ -21,7 +21,7 @@ class Node:
         return self.__key
 
     def __str__(self):
-        return 'left: {} | key: {} | right: {}'.format(self.__left_child, self.__key, self.__right_child)
+        return '{} | key: {} | {}'.format(self.__left_child, self.__key, self.__right_child)
 
     def __repr__(self):
         return self.__str__()
