@@ -75,7 +75,6 @@ class BST:
     def __traverse(self, node):
         # if node is None:
         #     node = self.__root
-        visited_rights = []
         left_child = self.__get_most_left_node_from_node(node)
 
         # TODO: check for None (left_child)
@@ -142,16 +141,16 @@ class BST:
 def main():
     bst = BST()
 
-    # bst.isert(9)
-    # bst.isert(6)
-    # bst.isert(8)
-    # bst.isert(7)
-    # bst.isert(6)
-    # bst.isert(5)
-    # bst.isert(11)
-    # bst.isert(10)
-    # bst.isert(18)
-    # bst.isert(15)
+    bst.isert(9)
+    bst.isert(6)
+    bst.isert(8)
+    bst.isert(7)
+    bst.isert(6)
+    bst.isert(5)
+    bst.isert(11)
+    bst.isert(10)
+    bst.isert(18)
+    bst.isert(15)
 
     # bst.isert(7)
     # bst.isert(1)
