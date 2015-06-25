@@ -7,14 +7,14 @@ class BST:
         self.__root = None
         self.__size = 0
 
-    def isert(self, value, current_node=None):
+    def insert(self, key, value=None, current_node=None):
         if current_node is None:
             current_node = self.__root
         if self.__size == 0:
-            self.__root = Node(value)
+            self.__root = Node(key, value)
             self.__size = 1
         else:
-            new_node = Node(value)
+            new_node = Node(key, value)
             while True:
                 if current_node.get_key() <= new_node.get_key():
                     if self.__check_child_for_add(current_node, 'r'):
@@ -42,8 +42,8 @@ class BST:
             else:
                 current_node = current_node.get_right_child()
 
-    def remove(self, value):
-        node = self.lookup(value)
+    def remove(self, key):
+        node = self.lookup(key)
         parent_node = node.get_parent()
         if parent_node is None:
             if node.get_right_child() is not None:
@@ -69,28 +69,42 @@ class BST:
             new_nod_key = self.__pop_most_left_from_node(node)
             node.add_key(new_nod_key)
 
-    def traverse(self):
-        self.__traverse(self.__root)
+    def traverse(self, traverse_type=None):
+        if traverse_type is None:
+            print(self.__traverse(self.__root))
+        else:
+            return self.__traverse(self.__root, traverse_type)
 
-    def __traverse(self, node):
-        # if node is None:
-        #     node = self.__root
-        left_child = self.__get_most_left_node_from_node(node)
-
-        # TODO: check for None (left_child)
-        # TODO: add check for right_child on last right element
-        if left_child is not None:
-            print(left_child.get_key())
-            right_child = left_child.get_right_child()
-            if right_child is not None:
-                self.__traverse(right_child)
-            parent = left_child.get_parent()
-            print(parent.get_key())
-            parent_right = parent.get_right_child()
-            self.__traverse(parent_right)
+    def __traverse(self, node, traverse_type=None):
+        if traverse_type is None:
+            if node is not None:
+                keys = []
+                left_result = self.__traverse(node.get_left_child())
+                if left_result is not None:
+                    keys += left_result
+                keys.append(node.get_key())
+                right_result = self.__traverse(node.get_right_child())
+                if right_result is not None:
+                    keys += right_result
+                return keys
         else:
             if node is not None:
-                print(node.get_key())
+                nodes = []
+                left_result = self.__traverse(node.get_left_child(), 1)
+                if left_result is not None:
+                    nodes += left_result
+                nodes.append((node.get_key(), node.get_value()))
+                right_result = self.__traverse(node.get_right_child(), 1)
+                if right_result is not None:
+                    nodes += right_result
+                return nodes
+
+    def is_valid(self):
+        tree_like_list = self.__traverse(self.__root)
+        for i in range(1, len(tree_like_list)):
+            if tree_like_list[i] < tree_like_list[i - 1]:
+                return False
+        return True
 
     def __get_most_left_node_from_node(self, node):
         if node is not None:
@@ -135,35 +149,27 @@ class BST:
     def get_bst(self):
         return self.__root
 
-# TODO: Some corner case in right half
-
 
 def main():
     bst = BST()
 
-    bst.isert(9)
-    bst.isert(6)
-    bst.isert(8)
-    bst.isert(7)
-    bst.isert(6)
-    bst.isert(5)
-    bst.isert(11)
-    bst.isert(10)
-    bst.isert(18)
-    bst.isert(15)
-
-    # bst.isert(7)
-    # bst.isert(1)
-    # bst.isert(6)
-    # bst.isert(2)
-    # bst.isert(4)
-    # bst.isert(3)
-    # bst.isert(5)
-    # bst.isert(11)
-    # bst.isert(15)
-    # bst.isert(18)
-    bst.traverse()
-    # print(bst.get_bst())
+    bst.insert('kak')
+    bst.insert('aka')
+    # bst.insert('w')
+    # bst.insert('h')
+    # bst.insert('b')
+    # bst.insert('f')
+    # bst.insert('a')
+    # bst.insert(6)
+    # bst.insert(2)
+    # bst.insert(4)
+    # bst.insert(3)
+    # bst.insert(5)
+    # bst.insert(11)
+    # bst.insert(15)
+    # bst.insert(18)
+    # bst.traverse(1)
+    print(bst.is_valid())
 
 if __name__ == '__main__':
     main()
