@@ -39,8 +39,33 @@ class BIT:
     def __get_parent(self, index):
         return index // 2
 
+    def __is_right_child(self, index):
+        return index % 2 == 1
+
+    def __make_work_index(self, index):
+        return self.__list_len // 2 + index - 1
+
+    def __sum_to_index(self, index):
+        current_sum = 0
+        current = self.__make_work_index(index)
+        if current == self.__list_len:
+            return self.__list[1]
+        while current > 1:
+            if self.__is_right_child(current):
+                current_sum += self.__list[current - 1]
+            current = self.__get_parent(current)
+
+        return current_sum
+
+    def sum_from_to(self, start_index, end_index):
+        if start_index == end_index:
+            return self.__list[self.__make_work_index(start_index)]
+        bigger_sum = self.__sum_to_index(end_index + 1)
+        smaller_sum = self.__sum_to_index(start_index)
+        return bigger_sum - smaller_sum
+
     def update(self, index, new_value, update_type=None):
-        update_index = self.__list_len // 2 + index
+        update_index = self.__make_work_index(index)
         old_value = self.__list[update_index]
         if update_type is None:
             self.__list[update_index] = new_value
@@ -58,8 +83,9 @@ class BIT:
 
 def main():
     bit = BIT([1, 2, 3, 4])
-    bit.update(3, 5)
+    # bit.update(4, 5)
     print(bit.get_bit())
+    print(bit.sum_from_to(2, 3))
 
 if __name__ == '__main__':
     main()
