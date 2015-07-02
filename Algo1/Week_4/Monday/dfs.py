@@ -7,7 +7,6 @@ class DFS:
         self.__stack = Stack
 
     def traverse(self, graph, traverse_type=None):
-        current_path = []
         visited = []
         start_index = 0
         self.__stack.push(start_index)

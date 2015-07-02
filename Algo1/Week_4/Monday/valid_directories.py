@@ -10,52 +10,45 @@ class DirectoriesValidator:
         if start_index is None:
             start_index = 0
         stack = []
+        inStack = [False]*(len(graph))
         visited = []
-        current_track = []
         stack.append(start_index)
-        current_track.append(start_index)
+        inStack[start_index] = True
 
-        while len(stack) != 0:
+        while len(visited) <= len(graph):
+            if len(stack) == 0:
+                new_root = [x for x in range(len(graph)) if x not in visited][0]
+                stack.append(new_root)
             current = stack[-1]
-            stack = stack[:-1]
-            if current is not None:
+            if sum(graph[current]) == 0:
+                stack = stack[:-1]
+                inStack[current] = False
+            elif inStack[current] is True and current in visited:
+                stack = stack[:-1]
+                inStack[current] = False
+            else:
                 for e in range(len(graph[current])):
-                    if graph[current][e] == 1 and e not in visited:
+                    if graph[current][e] != 0:
+                        if inStack[e] is True:
+                            return False
                         stack.append(e)
-            print(stack)
-            visited.append(current)
+                        inStack[e] = True
 
-        # while stack.size() != 0:
-        #     current = stack.pop()
-        #     if current is not None:
-        #         counter = 0
-        #         for i in range(len(graph[current])):
-        #             if graph[current][i] == 1 and graph[current][i] not in visited:
-        #                 stack.push(graph[current][i])
-        #                 counter += 1
-        #         visited.append(current)
-        #         if counter == 0:
-        #             pass
-        #         else:
-        #             current_track.append(current)
+            visited.append(current)
+        return True
 
 
 def main():
-    graph = [[0, 1, 0, 1, 0, 1, 0, 0],
-             [0, 0, 1, 0, 0, 0, 0, 0],
-             [1, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 1, 0, 0, 0],
-             [1, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 1, 0, 0, 1, 1],
-             [0, 0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0, 0]]
-    # The real deal
-    # graph = [[0, 1, 0, 0],
-    #          [0, 0, 1, 1],
-    #          [0, 0, 0, 0],
-    #          [1, 0, 0, 0]]
+    graph = [
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 2, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 2, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0]]
+
     dv = DirectoriesValidator()
-    dv.validate(graph)
+    print(dv.validate(graph))
 
 
 if __name__ == '__main__':
