@@ -14,7 +14,8 @@ class DFS:
 
         while self.stack.size() != 0:
             current = self.pop()
-
+            if current is not None:
+                pass
 
 
 def main():
