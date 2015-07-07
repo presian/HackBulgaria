@@ -36,7 +36,10 @@ class RMQ:
     def __get_parent(self, index):
         return index // 2
 
-    def __get_childs(self, parent_index):
+    def __get_left_child_index(self, parent_index):
+        return parent_index*2
+
+    def __get_right_child_index(self, parent_index):
         return parent_index*2
 
     def __is_right_child(self, index):
@@ -48,33 +51,52 @@ class RMQ:
     def __make_work_index(self, index):
         return self.__list_len // 2 + index - 1
 
+    def __make_out_index(self, index):
+        return index + 1 - (self.__list_len // 2)
+
     def __min_from_index_to_index(self, start_index, end_index):
 
-        current_start_index = self.__make_work_index(start_index)
-        current_end_index = self.__make_work_index(end_index)
-        if self.__list[current_start_index] <= self.__list[current_end_index]:
-            min_index = current_start_index
-            min_value = self.__list[current_start_index]
+        start = self.__make_work_index(start_index)
+        end = self.__make_work_index(end_index)
+        if self.__list[start] <= self.__list[end]:
+            min_index = start
+            min_value = self.__list[start]
         else:
-            min_index = current_start_index
-            min_value = self.__list[current_end_index]
+            min_index = end
+            min_value = self.__list[end]
 
-        start_parent = self.__get_parent(current_start_index)
-        end_parent = self.__get_parent(current_end_index)
+        current_left_index = self.__get_parent(start)
+        current_right_index = self.__get_parent(end)
 
-        if not self.__is_left_child(current_start_index):
-            current_left_index == start_parent + 1
-        if not self.__is_right_child(current_end_index):
-            current_right_index == end_parent - 1
-
+        if not self.__is_left_child(start):
+            current_left_index = self.__get_parent(start + 1)
+        if not self.__is_right_child(end):
+            current_right_index = self.__get_parent(end - 1)
+        traverse_min = min_index
         while current_left_index >= 1:
-            current_left_index = self.__get_parent(current_left_index)
-            current_right_index = self.__get_parent(current_right_index)
             if current_left_index == current_right_index:
                 traverse_min = current_left_index
                 break
-        # TODO: Add checking for min value
-        return self.__list[min_index]
+            current_left_index = self.__get_parent(current_left_index)
+            current_right_index = self.__get_parent(current_right_index)
+        traverse_min_value = self.__list[traverse_min]
+        if traverse_min_value < min_value:
+            min_index = traverse_min
+            min_value = traverse_min_value
+            while True:
+                left_child_index = self.__get_left_child_index(min_index)
+                if left_child_index <= self.__list_len and self.__list[left_child_index] == min_value:
+                    min_index = left_child_index
+                    continue
+                right_child_index = self.__get_right_child_index(min_index)
+                if right_child_index <= self.__list_len and self.__list[right_child_index] == min_value:
+                    min_index = right_child_index
+                    continue
+                return self.__make_out_index(min_index)
+        return self.__make_out_index(min_index)
+
+    def __return(self):
+        pass
 
     def get_min_in_interval(self, start_index, end_index):
         return self.__min_from_index_to_index(start_index, end_index)
@@ -84,9 +106,9 @@ class RMQ:
 
 
 def main():
-    bit = RMQ([1, 11, 3, 4, 5, 6, 7, 8])
-    print(bit.get_rmq())
-    print(bit.get_min_in_interval(2, 5))
+    rmq = RMQ([1, 11, 3, 4, 0, 6, 7, 8])
+    print(rmq.get_rmq())
+    print(rmq.get_min_in_interval(2, 5))
 
 if __name__ == '__main__':
     main()
