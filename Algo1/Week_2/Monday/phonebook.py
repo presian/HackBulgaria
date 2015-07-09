@@ -8,7 +8,12 @@ def phonebook_searcher(phonebook, searched_elements):
         else:
             result_name = None
         result.append(result_name)
-    return result
+    print_query(result)
+
+
+def print_query(query_result):
+    for q in query_result:
+        print(q)
 
 
 def binary_search(element, g_list, left=None, right=None):
@@ -41,9 +46,22 @@ def make_mid_point(left, right):
 
 
 def main():
-    phonebook = [(1, "Stanislav"), (15, "Rado"), (6, "Ivan"), (8, "Ivan")]
-    searched = [15, 8]
-    print(phonebook_searcher(phonebook, searched))
+    input_array = input().split()
+    line_count = int(input_array[0])
+    query_count = int(input_array[1])
+
+    phonebook = []
+    for i in range(0, line_count):
+        new_entry = input().split()
+        phonebook.append((int(new_entry[0]), new_entry[1]))
+
+    searched = []
+    for q in range(0, query_count):
+        searched.append(int(input()))
+
+    # phonebook = [(1, "Stanislav"), (15, "Rado"), (6, "Ivan"), (8, "Ivan")]
+    # searched = [15, 8]
+    phonebook_searcher(phonebook, searched)
 
 if __name__ == '__main__':
     main()

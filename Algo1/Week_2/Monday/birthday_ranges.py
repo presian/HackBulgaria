@@ -1,4 +1,33 @@
-from binary_search import binary_search
+def binary_search(element, g_list, left=None, right=None, most_left_in_left_bound=False):
+    if left is None:
+        left = 0
+    if right is None:
+        right = len(g_list) - 1
+
+    arr_len = len(g_list)
+    if element < g_list[left]\
+        or element > g_list[right]\
+        or arr_len == 0\
+            or arr_len == 1 and g_list[0] != element:
+        return -1
+
+    mid_point = make_mid_point(left, right)
+    mid_point_value = g_list[mid_point]
+
+    if element == mid_point_value:
+        while mid_point > 0 and g_list[mid_point - 1] == element:
+            if most_left_in_left_bound is True and mid_point == left:
+                return mid_point
+            mid_point -= 1
+        return mid_point
+    elif element < mid_point_value:
+        return binary_search(element, g_list, left, mid_point - 1, most_left_in_left_bound)
+    else:
+        return binary_search(element, g_list, mid_point + 1, right, most_left_in_left_bound)
+
+
+def make_mid_point(left, right):
+    return left + (right - left) // 2
 
 
 def birth_days_ranges(birth_days, ranges):
@@ -14,13 +43,24 @@ def birth_days_ranges(birth_days, ranges):
                     min_index += 1
                 break
         result.append(counter)
-    return result
+    print_result(result)
+
+
+def print_result(result_list):
+    for r in result_list:
+        print(r)
 
 
 def main():
-    birth_days = [5, 10, 6, 7, 3, 4, 5, 11, 21, 300, 15]
-    ranges = [(4, 9), (6, 7), (200, 225), (300, 365)]
-    print(birth_days_ranges(birth_days, ranges))
+    first_line_input_as_string_arr = input().split()
+    second_line_input_as_string_arr = input().split()
+    birth_days = [int(x) for x in second_line_input_as_string_arr]
+    ranges = []
+    for r in range(0, int(first_line_input_as_string_arr[1])):
+        ranges_as_str_arr = input().split()
+        ranges.append((int(ranges_as_str_arr[0]), int(ranges_as_str_arr[1])))
+
+    birth_days_ranges(birth_days, ranges)
 
 if __name__ == '__main__':
     main()

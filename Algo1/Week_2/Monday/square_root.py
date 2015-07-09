@@ -16,21 +16,22 @@ def square_root(number):
         mid_point = make_mid_point(start, end)
         current_square = mid_point * mid_point
         if current_square == number:
-            return float("{0:.5f}".format(mid_point))
+            return print("{0:.5f}".format(mid_point))
         if current_square < number:
             start = mid_point
         else:
             end = mid_point
 
-    return float("{0:.5f}".format(make_mid_point(start, end)))
+    print("{0:.5f}".format(make_mid_point(start, end)))
 
 
 def make_mid_point(start, end):
-    return  start + (end - start) / 2
+    return start + (end - start) / 2
 
 
 def main():
-    print(square_root(11))
+    number = int(input())
+    square_root(number)
 
 
 if __name__ == '__main__':
