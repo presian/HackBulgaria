@@ -37,8 +37,8 @@ class Heap:
         self.__heap = [None]
         self.__size = len(self.__heap)
 
-    def insert(self, value):
-        self.__heap.append(value)
+    def insert(self, node):
+        self.__heap.append(node)
         self.__size = self.__size + 1
         current_index = self.__size - 1
         parent_index = self.__get_parent_index(current_index)
