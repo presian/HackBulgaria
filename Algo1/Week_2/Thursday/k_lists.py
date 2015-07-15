@@ -3,8 +3,8 @@ class KLists:
     def __init__(self):
         self.__lists = []
 
-    def merge(self, *lists):
-        lists = list(lists)
+    def merge(self, lists):
+        # lists = list(lists)
         self.__lists = lists
         final_arr_len = sum([len(l) for l in lists])
         sorted_arr = []
@@ -29,8 +29,12 @@ class KLists:
 
 
 def main():
+    list_count = int(input())
+    lists = []
+    for i in range(list_count):
+        lists.append([int(x) for x in input().split()])
     klists = KLists()
-    print(klists.merge([3, 5, 7, 9], [2, 4, 6], [0, 1, 8, 10], [-1, 15, 33, 21]))
+    print(klists.merge(lists))
 
 
 if __name__ == '__main__':
