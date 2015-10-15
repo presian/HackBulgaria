@@ -76,5 +76,22 @@ class Heap:
             return self.__heap[1]
         return None
 
+
 def dijkstra(graph, start_point):
-    # make
+    pass
+
+
+def main():
+    main_data_input = [int(x) for x in input().split()]
+    neighbors_lists = [[] for _ in range(main_data_input[0] + 1)]
+    neighbors_lists[0] = None
+    for s in range(main_data_input[1]):
+        street = [int(x) for x in input().split()]
+        print(street)
+        neighbors_lists[street[0]].append((street[1], street[2]))
+    for e in neighbors_lists:
+        print(e)
+
+
+if __name__ == '__main__':
+    main()

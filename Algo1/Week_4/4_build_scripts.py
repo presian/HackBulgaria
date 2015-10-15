@@ -1,21 +1,27 @@
-def find_dependencies(graph):
+def find_dependencies(graph, start_poin):
     graph_len = len(graph)
     visited = [None] * graph_len
     path = []
-    for i in range(graph_len):
+    for i in graph[start_poin]:
         if visited[i] is None:
-            DFS(graph, i, visited, path)
+            result = DFS(graph, i, visited, path)
+            visited = result[0]
+            path = result[1]
+    return path
 
 
 def DFS(graph, start_point, visited, path):
     if visited[start_point] is None:
         visited[start_point] = True
+        path.append(start_point)
         for i in graph[start_point]:
             if visited[i] is None:
-                if graph[i] == [] or is_all_visited(visited, graph[i]) is True:
-                    path.append(i)
-                else:
-                    return DFS(graph, i, visited, path)
+                return DFS(graph, i, visited, path)
+                # if graph[i] == [] or is_all_visited(visited, graph[i]) is False:
+                #     path.append(i)
+                # else:
+                #     return DFS(graph, i, visited, path)
+    return visited, path
 
 
 def is_all_visited(visited, arr):
@@ -34,8 +40,7 @@ def main():
     for i in range(projects_count):
         current_row = input().split()
         project_dependencies.append([projects.index(x) for x in current_row[1:]])
-    visited = [None] * len(project_dependencies)
-    DFS(project_dependencies, start_point, visited, [])
+    print(find_dependencies(project_dependencies, start_point))
 
 if __name__ == '__main__':
     main()
